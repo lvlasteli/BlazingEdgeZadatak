@@ -28,6 +28,8 @@ export class Home extends React.Component{
             });
         }
         else {
+            //if we want to toggle between black and 1 random color
+            this.getRandomColor();
             if(this.state.color===""){
                 this.setState({
                     color: this.state.black
