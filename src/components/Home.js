@@ -22,20 +22,28 @@ export class Home extends React.Component{
         this.getRandomColor();
     }
     changeColor() {
-        if(this.state.color===""){
+        if(this.props.userInput) {
             this.setState({
-                color: this.state.black
+                color: this.props.userInput
             });
         }
-        else if(this.state.color==="black"){
-            this.setState({
-                color: this.state.randomCol
-            });
-        } else {
-            this.setState({
-                color: this.state.black
-            });
+        else {
+            if(this.state.color===""){
+                this.setState({
+                    color: this.state.black
+                });
+            }
+            else if(this.state.color==="black"){
+                this.setState({
+                    color: this.state.randomCol
+                });
+            } else {
+                this.setState({
+                    color: this.state.black
+                });
+            }
         }
+        
     }
     render() {
         let comp;

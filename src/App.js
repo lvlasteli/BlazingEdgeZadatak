@@ -3,13 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 
 //importing home component
-import { Home } from './components/Home';
+import { Home } from "./components/Home";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      colorhex: []
+      colorhex: [],
+      userInput: ''
     }
     this.LoadData=this.LoadData.bind(this);
     this.LoadData();
@@ -17,7 +18,7 @@ class App extends Component {
     
   }
   LoadData() {
-    fetch('http://www.colr.org/json/color/random')
+    fetch("http://www.colr.org/json/color/random")
     .then((res) => res.json())
     .then((data) => {
       this.setState(prevState => ({
@@ -30,15 +31,22 @@ class App extends Component {
   //   this.LoadData();
   //   this.LoadData();
   // }
+  onUserInput(text) {
+    this.setState({
+      userInput: text.target.value
+    });
+  }
   render() {
     let comp;
     if(this.state.colorhex.length===2) {
-      comp = (<Home listofrandomcolors={this.state.colorhex}/>)
+      comp = (<Home listofrandomcolors={this.state.colorhex} userInput={this.state.userInput}/>)
     }
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          Insert colors name:
+          <input type="text" onChange={(event)=> this.onUserInput(event)}></input>
           {comp}
           <a
             className="App-link"
