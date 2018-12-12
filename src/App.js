@@ -12,10 +12,6 @@ class App extends Component {
       colorhex: [],
       userInput: ''
     }
-    this.LoadData=this.LoadData.bind(this);
-    this.LoadData();
-    this.LoadData();
-    
   }
   LoadData() {
     fetch("http://www.colr.org/json/color/random")
@@ -25,6 +21,10 @@ class App extends Component {
         colorhex: [...prevState.colorhex, "#"+data.colors[0].hex]
       }));
     });
+  }
+  componentDidMount() {
+    this.LoadData();
+    this.LoadData();
   }
   // componentWillMount () {
   //   //save 2 colors in state
@@ -37,17 +37,13 @@ class App extends Component {
     });
   }
   render() {
-    let comp;
-    if(this.state.colorhex.length===2) {
-      comp = (<Home listofrandomcolors={this.state.colorhex} userInput={this.state.userInput}/>)
-    }
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           Insert colors name:
           <input type="text" onChange={(event)=> this.onUserInput(event)}></input>
-          {comp}
+          <Home listofrandomcolors={this.state.colorhex} userInput={this.state.userInput}></Home>
           <a
             className="App-link"
             href="https://reactjs.org"

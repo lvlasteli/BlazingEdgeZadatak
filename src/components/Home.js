@@ -2,7 +2,6 @@ import React from "react";
 
 export class Home extends React.Component{
     constructor(props) {
-        console.log(props);
         super(props);
         this.state= {
             color: "",
